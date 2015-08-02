@@ -2,3 +2,4 @@ app/components
 node_modules
 build
 public
+dist
