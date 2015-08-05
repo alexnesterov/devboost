@@ -4,25 +4,62 @@ var jade = require('gulp-jade');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
 var plumber = require('gulp-plumber');
-var connect = require('gulp-connect');
-var open = require('gulp-open');
 var imagemin = require('gulp-imagemin');
+var browserSync = require('browser-sync').create();
 
 var appFolder = {
-  fonts: "app/assets/fonts",
-  images: "app/assets/images",
-  styles: "app/assets/styles",
-  scripts: "app/assets/scripts",
-  templates: "app/templates"
+  fonts: 'app/assets/fonts',
+  img: 'app/assets/img',
+  css: 'app/assets/css',
+  js: 'app/assets/js',
+  templates: 'app/templates'
 }
 
 var distFolder = {
-  fonts: "dist/assets/fonts",
-  images: "dist/assets/images",
-  styles: "dist/assets/styles",
-  scripts: "dist/assets/scripts",
-  templates: "dist"
+  fonts: 'dist/assets/fonts',
+  img: 'dist/assets/img',
+  css: 'dist/assets/css',
+  js: 'dist/assets/js',
+  templates: 'dist'
 }
+
+//Fonts Tasks
+gulp.task('fonts', function() {
+  gulp.src(appFolder.fonts + '/**/*')
+  gulp.dest(distFolder.fonts);
+});
+
+//Images Task
+gulp.task('img', function() {
+  gulp.src(appFolder.img + '/**/*')
+    .pipe(plumber())
+    .pipe(imagemin())
+    .pipe(gulp.dest(distFolder.img))
+    .pipe(browserSync.stream());
+});
+
+// Styles Task
+gulp.task('css', function() {
+  gulp.src(appFolder.css + '/*.styl')
+    .pipe(plumber())
+    .pipe(stylus({
+      'include css': true,
+      use: [nib()]
+    }))
+    //.pipe(minifyCss())
+    .pipe(gulp.dest(distFolder.css))
+    .pipe(browserSync.stream());
+});
+
+//Scripts Task
+gulp.task('js', function() {
+  gulp.src('app/components/jquery/dist/jquery.min.js')
+    .pipe(gulp.dest(distFolder.js + '/vendor'))
+    .pipe(browserSync.stream());
+  gulp.src(appFolder.js + '/common.js')
+    .pipe(gulp.dest(distFolder.js))
+    .pipe(browserSync.stream());
+});
 
 // Templates Task
 gulp.task('templates', function() {
@@ -32,64 +69,28 @@ gulp.task('templates', function() {
       pretty: true
     }))
     .pipe(gulp.dest(distFolder.templates))
-    .pipe(connect.reload());
-});
-
-// Styles Task
-gulp.task('styles', function() {
-  gulp.src(appFolder.styles + '/*.styl')
-    .pipe(plumber())
-    .pipe(stylus({
-      'include css': true,
-      use: [nib()]
-    }))
-    //.pipe(minifyCss())
-    .pipe(gulp.dest(distFolder.styles))
-    .pipe(connect.reload());
-});
-
-//Images Task
-gulp.task('images', function() {
-  gulp.src(appFolder.images + '/**/*')
-    .pipe(imagemin())
-    .pipe(gulp.dest(distFolder.images))
-    .pipe(connect.reload());
-});
-
-//Scripts Task
-gulp.task('scripts', function() {
-  gulp.src('app/components/jquery/dist/jquery.min.js')
-    .pipe(gulp.dest(distFolder.scripts + '/vendor'));
-  gulp.src(appFolder.scripts + '/main.js')
-    .pipe(gulp.dest(distFolder.scripts))
-    .pipe(connect.reload());
+    .pipe(browserSync.stream());
 });
 
 // Watching files task
-gulp.task('watch', ['templates', 'styles', 'scripts'], function() {
+gulp.task('watch', ['fonts', 'img', 'css', 'js', 'templates'], function() {
+  gulp.watch(appFolder.fonts + '/**/*', ['fonts']);
+  gulp.watch(appFolder.img + '/**/*', ['img']);
+  gulp.watch(appFolder.css + '/**/*.styl', ['css']);
+  gulp.watch(appFolder.js + '/**/*', ['js']);
   gulp.watch(appFolder.templates + '/**/*.jade', ['templates']);
-  gulp.watch(appFolder.styles + '/**/*.styl', ['styles']);
-  gulp.watch(appFolder.images + '/**/*', ['images']);
-  gulp.watch(appFolder.scripts + '/**/*', ['scripts']);
 });
 
-// Server tasks
-gulp.task('open', function() {
-  gulp.src(__filename)
-    .pipe(open({
-      uri: 'http://localhost:8888',
-      app: 'chrome'
-    }));
-});
-
-gulp.task('server', function() {
-  connect.server({
-    port: 8888,
-    root: 'dist',
-    livereload: true
+// Browsersync Task
+gulp.task('server', ['watch'], function () {
+  browserSync.init({
+    server: {
+      baseDir: 'dist',
+      notify: false
+    }
   });
 });
 
 // Default task
 // Run development environment
-gulp.task('default', ['images', 'watch', 'server', 'open']);
+gulp.task('default', ['server']);
