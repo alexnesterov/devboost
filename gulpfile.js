@@ -32,7 +32,9 @@ var path = {
     js: 'app/assets/js/**/*',
     img: 'app/assets/img/**/*',
     fonts: 'app/assets/fonts/**/*'
-  }
+  },
+  clean: 'dist',
+  gitkeep: 'app/**/.gitkeep'
 }
 
 // Templates Task
@@ -108,7 +110,13 @@ gulp.task('watch', function() {
 
 // Clean Task
 gulp.task('clean', function() {
-  return gulp.src('dist', {read: false})
+  return gulp.src(path.clean, {read: false})
+    .pipe(clean());
+});
+
+// Remove gitkeep files
+gulp.task('gitkeep', function() {
+  return gulp.src(path.gitkeep, {read: false})
     .pipe(clean());
 });
 
