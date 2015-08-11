@@ -6,6 +6,7 @@ var nib = require('nib');
 var plumber = require('gulp-plumber');
 var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync').create();
+var clean = require('gulp-clean');
 
 var appFolder = {
   fonts: 'app/assets/fonts',
@@ -82,7 +83,7 @@ gulp.task('watch', ['fonts', 'img', 'css', 'js', 'templates'], function() {
 });
 
 // Browsersync Task
-gulp.task('server', ['watch'], function () {
+gulp.task('server', function() {
   browserSync.init({
     server: {
       baseDir: 'dist',
@@ -91,6 +92,45 @@ gulp.task('server', ['watch'], function () {
   });
 });
 
+// Clean Task
+gulp.task('clean', function() {
+  return gulp.src('dist', {read: false})
+    .pipe(clean());
+});
+
 // Default task
 // Run development environment
-gulp.task('default', ['server']);
+gulp.task('default', ['watch', 'server']);
+
+// Build project
+gulp.task('build', function() {
+  // fonts
+  gulp.src(appFolder.fonts + '/**/*')
+  gulp.dest(distFolder.fonts);
+  // img
+  gulp.src(appFolder.img + '/**/*')
+    .pipe(plumber())
+    .pipe(imagemin())
+    .pipe(gulp.dest(distFolder.img));
+  // css
+  gulp.src(appFolder.css + '/*.styl')
+    .pipe(plumber())
+    .pipe(stylus({
+      'include css': true,
+      use: [nib()]
+    }))
+    .pipe(minifyCss())
+    .pipe(gulp.dest(distFolder.css));
+  // js
+  gulp.src('app/components/jquery/dist/jquery.min.js')
+    .pipe(gulp.dest(distFolder.js + '/vendor'));
+  gulp.src(appFolder.js + '/common.js')
+    .pipe(gulp.dest(distFolder.js));
+  // templates
+  gulp.src(appFolder.templates + '/*.jade')
+    .pipe(plumber())
+    .pipe(jade({
+      pretty: true
+    }))
+    .pipe(gulp.dest(distFolder.templates));
+});
