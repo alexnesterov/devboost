@@ -3,6 +3,7 @@ var minifyCss = require('gulp-minify-css');
 var jade = require('gulp-jade');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
+var jeet = require('jeet');
 var plumber = require('gulp-plumber');
 var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync').create();
@@ -54,7 +55,7 @@ gulp.task('css', function() {
     .pipe(plumber())
     .pipe(stylus({
       'include css': true,
-      use: [nib()]
+      use: [nib(),jeet()]
     }))
     //.pipe(minifyCss())
     .pipe(gulp.dest(path.dist.css))
