@@ -7,7 +7,7 @@ var jeet = require('jeet');
 var plumber = require('gulp-plumber');
 var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync').create();
-var clean = require('gulp-clean');
+var del = require('del');
 
 var path = {
   app: {
@@ -111,14 +111,12 @@ gulp.task('watch', function() {
 
 // Clean Task
 gulp.task('clean', function() {
-  return gulp.src(path.clean, {read: false})
-    .pipe(clean());
+  del(path.clean);
 });
 
 // Remove gitkeep files
 gulp.task('gitkeep', function() {
-  return gulp.src(path.gitkeep, {read: false})
-    .pipe(clean());
+  del(path.gitkeep);
 });
 
 // Default task
