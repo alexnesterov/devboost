@@ -1,8 +1,5 @@
 {
   "name": "devboost",
   "version": "1.0.0",
-  "dependencies": {
-    "normalize.css": "latest",
-    "jquery": "latest"
-  }
+  "dependencies": {}
 }

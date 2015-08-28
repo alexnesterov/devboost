@@ -1,0 +1,13 @@
+mixin nav(nav_items)
+  ul.nav
+    each top_item in nav_items
+      li.nav__item
+        +nav__links(top_item)
+        if top_item.child
+          ul.nav
+            each child_item in top_item.child
+              li.nav__item
+                +nav__links(child_item)
+
+mixin nav__links(item)
+  a.nav__link(href=item.link) #{item.title}
