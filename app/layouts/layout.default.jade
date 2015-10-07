@@ -13,11 +13,11 @@ html(lang="ru")
     if GoogleFonts
       link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=" + GoogleFonts, type="text/css")
     block style
-      link(rel="stylesheet", href="assets/css/main.css")
+      link(rel="stylesheet", href="assets/styles/main.css")
   body.page
     block body
     if jQuery
       script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
       if js
         block fjs
-          script(src="assets/js/functions.js")
+          script(src="assets/scripts/main.js")

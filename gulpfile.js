@@ -12,16 +12,16 @@ var del = require('del');
 var path = {
   app: {
     html: 'app/*.jade',
-    css: 'app/assets/css/*.styl',
-    js: 'app/assets/js/*.js',
-    img: 'app/assets/img/**/*',
+    css: 'app/assets/styles/*.styl',
+    js: 'app/assets/scripts/*.js',
+    img: 'app/assets/images/**/*',
     fonts: 'app/assets/fonts/**/*'
   },
   dist: {
     html: 'dist',
-    css: 'dist/assets/css',
-    js: 'dist/assets/js',
-    img: 'dist/assets/img',
+    css: 'dist/assets/styles',
+    js: 'dist/assets/scripts',
+    img: 'dist/assets/images',
     fonts: 'dist/assets/fonts'
   },
   watch: {
@@ -29,9 +29,9 @@ var path = {
       'app/*.jade',
       'app/layouts/*.jade'
     ],
-    css: 'app/assets/css/**/*',
-    js: 'app/assets/js/**/*',
-    img: 'app/assets/img/**/*',
+    css: 'app/assets/styles/**/*',
+    js: 'app/assets/scripts/**/*',
+    img: 'app/assets/images/**/*',
     fonts: 'app/assets/fonts/**/*'
   },
   clean: 'dist',
