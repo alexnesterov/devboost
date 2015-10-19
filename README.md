@@ -1,2 +1,2 @@
-# devboost
-Gulp (Jade, Stylus) starter kit
+# devBoost
+Jade and Stylus starter kit.

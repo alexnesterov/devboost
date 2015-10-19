@@ -8,6 +8,7 @@ var plumber = require('gulp-plumber');
 var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync').create();
 var del = require('del');
+var runSequence = require('run-sequence');
 
 var path = {
   app: {
@@ -17,9 +18,7 @@ var path = {
     img: 'app/assets/images/**/*',
     fonts: 'app/assets/fonts/**/*',
     rootfiles: [
-      'app/*',
-      '!app/assets',
-      '!app/layouts',
+      'app/*.*',
       '!app/*.jade'
     ]
   },
@@ -32,10 +31,7 @@ var path = {
     rootfiles: 'dist'
   },
   watch: {
-    html: [
-      'app/*.jade',
-      'app/layouts/*.jade'
-    ],
+    html: 'app/**/*.jade',
     css: 'app/assets/styles/**/*',
     js: 'app/assets/scripts/**/*',
     img: 'app/assets/images/**/*',
@@ -45,19 +41,24 @@ var path = {
       '!app/*.jade'
     ]
   },
-  clean: 'dist',
+  clean: 'dist/*',
   gitkeep: 'app/**/.gitkeep'
 }
 
+// Очистка папки дистрибутива dist
+gulp.task('clean', function(callback) {
+  del(path.clean, callback);
+});
+
 // Копирует все файлы из корня папки app
-gulp.task('copy', function() {
-  gulp.src(path.app.rootfiles)
+gulp.task('copy-rootfiles', function() {
+  return gulp.src(path.app.rootfiles)
     .pipe(gulp.dest(path.dist.rootfiles));
 });
 
 // Компилирует jade шаблоны
-gulp.task('html', function() {
-  gulp.src(path.app.html)
+gulp.task('build-html', function() {
+  return gulp.src(path.app.html)
     .pipe(plumber())
     .pipe(jade({
       pretty: true
@@ -67,8 +68,8 @@ gulp.task('html', function() {
 });
 
 // Компилирует stylus файлы
-gulp.task('css', function() {
-  gulp.src(path.app.css)
+gulp.task('build-styles', function() {
+  return gulp.src(path.app.css)
     .pipe(plumber())
     .pipe(stylus({
       'include css': true,
@@ -80,18 +81,15 @@ gulp.task('css', function() {
 });
 
 // Копирует скрипты
-gulp.task('js', function() {
-  gulp.src('bower_components/jquery/dist/jquery.min.js')
-    .pipe(gulp.dest(path.dist.js + '/vendor'))
-    .pipe(browserSync.stream());
-  gulp.src(path.app.js)
+gulp.task('build-scripts', function() {
+  return gulp.src(path.app.js)
     .pipe(gulp.dest(path.dist.js))
     .pipe(browserSync.stream());
 });
 
 // Сжимает и копирует изображения
-gulp.task('img', function() {
-  gulp.src(path.app.img)
+gulp.task('build-images', function() {
+  return gulp.src(path.app.img)
     .pipe(plumber())
     .pipe(imagemin())
     .pipe(gulp.dest(path.dist.img))
@@ -99,44 +97,46 @@ gulp.task('img', function() {
 });
 
 // Копирует шрифты
-gulp.task('fonts', function() {
-  gulp.src(path.app.fonts)
+gulp.task('build-fonts', function() {
+  return gulp.src(path.app.fonts)
     .pipe(gulp.dest(path.dist.fonts));
 });
 
 // Собирает проект
-gulp.task('build', ['html', 'css', 'js', 'img', 'fonts', 'copy']);
+gulp.task('build', ['clean'], function(callback) {
+  runSequence(
+    'build-styles',
+    ['build-html', 'copy-rootfiles'],
+    'build-scripts',
+    'build-images',
+    'build-fonts',
+    callback);
+});
 
 // Запускает сервер Browsersync
-gulp.task('server', function() {
+gulp.task('server', ['build'], function() {
+
   browserSync.init({
     server: {
       baseDir: 'dist',
     },
     notify: false
   });
-});
 
-// Запускает слежку за изменениями файлов
-gulp.task('watch', function() {
-  gulp.watch(path.watch.html, ['html']);
-  gulp.watch(path.watch.css, ['css']);
-  gulp.watch(path.watch.js, ['js']);
-  gulp.watch(path.watch.img, ['img']);
-  gulp.watch(path.watch.fonts, ['fonts']);
-  gulp.watch(path.watch.rootfiles, ['copy']);
-});
+  gulp.watch(path.watch.html, ['build-html']);
+  gulp.watch(path.watch.rootfiles, ['copy-rootfiles']);
+  gulp.watch(path.watch.css, ['build-styles']);
+  gulp.watch(path.watch.js, ['build-scripts']);
+  gulp.watch(path.watch.img, ['build-images']);
+  gulp.watch(path.watch.fonts, ['build-fonts']);
 
-// Очистка папки дистрибутива dist
-gulp.task('clean', function() {
-  del(path.clean);
 });
 
 // Удаляет файлы gitkeep из проекта
-gulp.task('gitkeep', function() {
-  del(path.gitkeep);
+gulp.task('gitkeep', function(callback) {
+  del(path.gitkeep, callback);
 });
 
 // Задача по-умолчанию
 // Запускает окружение для разработки
-gulp.task('default', ['build', 'server', 'watch']);
+gulp.task('default', ['server']);

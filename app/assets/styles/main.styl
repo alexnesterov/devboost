@@ -7,7 +7,7 @@
   clearfix()
 
 // Sticky Footer
-footerHeight = 50px
+footerHeight = 70px
 
 html
 body
@@ -33,11 +33,49 @@ body
   line-height 1.4
   color #000
 
-.start
-  margin 20px
-  color #4d4d4d
-  text-align center
-
 .footer
   text-align center
   line-height footerHeight
+
+// Remove this styles before start coding
+.page
+  min-width 320px
+  background #ccc
+
+.page-wrap
+  background #fff
+  border-left 15px solid #404040
+  border-right 15px solid #404040
+
+.line
+  width 100%
+  height 0
+  border-top 10px solid #404040
+
+.flash
+  box-sizing border-box
+  max-width 100%
+  display block
+  margin 20px auto
+  opacity .75
+  border-radius 256px
+  background #ccc
+
+.start
+  color #4d4d4d
+  text-align center
+  font-size 60px
+  @media screen and (max-width: 360px)
+    font-size 48px
+
+.coding
+  margin 0 auto
+  display block
+  max-width 100%
+  opacity .75
+
+.footer
+  background #404040
+
+.copyright
+  color #ccc
