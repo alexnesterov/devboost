@@ -1,0 +1,34 @@
+// clearfix
+.clearfix
+  clearfix()
+
+// Sticky Footer
+footerHeight = 70px
+
+html
+body
+  height 100%
+
+.page-wrap
+  clearfix()
+  overflow hidden
+  min-height 100%
+  margin-bottom -(footerHeight)
+  &:after
+    content ''
+    display block
+    height footerHeight
+
+.footer
+  height footerHeight
+
+// Styles
+.page
+  font-family 'Open Sans', Arial, sans-serif
+  font-size 15px
+  line-height 1.4
+  color #000
+
+.footer
+  text-align center
+  line-height footerHeight
