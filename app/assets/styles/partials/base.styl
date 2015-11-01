@@ -1,26 +1,27 @@
+// Sticky Footer
+sticky-footer(pagewrap, footer, footerHeight)
+  html
+  body
+    height 100%
+
+  {pagewrap}
+    clearfix()
+    overflow hidden
+    min-height 100%
+    margin-bottom -(footerHeight)
+    &:after
+      content ''
+      display block
+      height footerHeight
+
+  {footer}
+    height footerHeight
+    line-height footerHeight
+    text-align center
+
 // clearfix
 .clearfix
   clearfix()
-
-// Sticky Footer
-footerHeight = 70px
-
-html
-body
-  height 100%
-
-.page-wrap
-  clearfix()
-  overflow hidden
-  min-height 100%
-  margin-bottom -(footerHeight)
-  &:after
-    content ''
-    display block
-    height footerHeight
-
-.footer
-  height footerHeight
 
 // Styles
 .page
@@ -28,7 +29,3 @@ body
   font-size 15px
   line-height 1.4
   color #000
-
-.footer
-  text-align center
-  line-height footerHeight
