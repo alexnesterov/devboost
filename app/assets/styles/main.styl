@@ -1,12 +1,22 @@
 // Tools
 @import 'nib'
 @import 'jeet'
-@import 'tools/mixins.styl'
-@import 'tools/normalize.css'
+@import '0-tools/mixins.styl'
+@import '0-tools/vars.styl'
 
 // Base
-@import 'base/vars.styl'
-@import 'base/base.styl'
+@import '1-base/normalize.css'
+@import '1-base/fonts.styl'
+@import '1-base/base.styl'
+
+// Layout
+@import '2-layout/header.styl'
+
+// Modules
+@import '3-modules/common.styl'
+
+// State
+@import '4-state/state.styl'
 
 // Remove this styles before start coding
-@import 'partials/hello.styl'
+@import 'hello.styl'
