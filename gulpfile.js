@@ -6,9 +6,10 @@ var nib = require('nib');
 var jeet = require('jeet');
 var plumber = require('gulp-plumber');
 var imagemin = require('gulp-imagemin');
-var browserSync = require('browser-sync').create();
+var browserSync = require('browser-sync');
 var del = require('del');
 var runSequence = require('run-sequence');
+var reload = browserSync.reload;
 
 var path = {
   app: {
@@ -63,9 +64,10 @@ gulp.task('build-html', function() {
     .pipe(jade({
       pretty: true
     }))
-    .pipe(gulp.dest(path.dist.html))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(path.dist.html));
 });
+
+gulp.task('jade-watch', ['build-html'], reload);
 
 // Компилирует stylus файлы
 gulp.task('build-styles', function() {
@@ -77,23 +79,23 @@ gulp.task('build-styles', function() {
     }))
     //.pipe(minifyCss())
     .pipe(gulp.dest(path.dist.css))
-    .pipe(browserSync.stream());
+    .pipe(reload({stream: true}));
 });
 
 // Копирует скрипты
 gulp.task('build-scripts', function() {
   return gulp.src(path.app.js)
-    .pipe(gulp.dest(path.dist.js))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(path.dist.js));
 });
+
+gulp.task('scripts-watch', ['build-scripts'], reload);
 
 // Сжимает и копирует изображения
 gulp.task('build-images', function() {
   return gulp.src(path.app.img)
     .pipe(plumber())
     .pipe(imagemin())
-    .pipe(gulp.dest(path.dist.img))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(path.dist.img));
 });
 
 // Копирует шрифты
@@ -105,11 +107,11 @@ gulp.task('build-fonts', function() {
 // Собирает проект
 gulp.task('build', ['clean'], function(callback) {
   runSequence(
-    'build-styles',
-    ['build-html', 'copy-rootfiles'],
-    'build-scripts',
-    'build-images',
     'build-fonts',
+    'build-images',
+    'build-styles',
+    'build-scripts',
+    ['build-html', 'copy-rootfiles'],
     callback);
 });
 
@@ -123,10 +125,10 @@ gulp.task('server', ['build'], function() {
     notify: false
   });
 
-  gulp.watch(path.watch.html, ['build-html']);
+  gulp.watch(path.watch.html, ['jade-watch']);
   gulp.watch(path.watch.rootfiles, ['copy-rootfiles']);
   gulp.watch(path.watch.css, ['build-styles']);
-  gulp.watch(path.watch.js, ['build-scripts']);
+  gulp.watch(path.watch.js, ['scripts-watch']);
   gulp.watch(path.watch.img, ['build-images']);
   gulp.watch(path.watch.fonts, ['build-fonts']);
 
