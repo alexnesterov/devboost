@@ -42,8 +42,7 @@ var path = {
       '!app/*.jade'
     ]
   },
-  clean: 'dist/*',
-  gitkeep: 'app/**/.gitkeep'
+  clean: 'dist/*'
 }
 
 // Очистка папки дистрибутива dist
@@ -132,11 +131,6 @@ gulp.task('server', ['build'], function() {
   gulp.watch(path.watch.img, ['build-images']);
   gulp.watch(path.watch.fonts, ['build-fonts']);
 
-});
-
-// Удаляет файлы gitkeep из проекта
-gulp.task('gitkeep', function(callback) {
-  del(path.gitkeep, callback);
 });
 
 // Задача по-умолчанию
