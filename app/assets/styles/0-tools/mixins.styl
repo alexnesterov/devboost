@@ -1,18 +1,15 @@
 // Sticky Footer
-// pagewrap - container class (.page-wrap)
-// footer - footer class (.footer)
 // Example:
-// <div class="page-wrap">
+// <div class="page__wrap">
 //   Content here
 // <div>
-// <div class="footer">Footer here<div>
-sticky-footer(pagewrap, footer, footerHeight)
+// <div class="page__footer">Footer here<div>
+sticky-footer(footerHeight)
   html
   body
     height 100%
 
-  {pagewrap}
-    clearfix()
+  .page__wrap
     min-height 100%
     margin-bottom -(footerHeight)
     &:after
@@ -20,7 +17,5 @@ sticky-footer(pagewrap, footer, footerHeight)
       display block
       height footerHeight
 
-  {footer}
+  .page__footer
     height footerHeight
-    line-height footerHeight
-    text-align center

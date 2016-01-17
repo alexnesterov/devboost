@@ -1,5 +1,9 @@
 extends layouts/layout.default
 
-block body
-  //- remove inner before start coding
+append page
+
+block page__wrap
   include includes/hello
+
+block page__footer
+  .description Jade and Stylus starter kit.

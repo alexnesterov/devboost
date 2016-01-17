@@ -14,17 +14,14 @@ html(lang="ru")
       link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=" + GoogleFonts, type="text/css")
     block styles
       link(rel="stylesheet", href="assets/styles/main.css")
-    if scriptsPosition === 'head'
-      if jQuery
-        script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
-        if js
-          block scripts
-            script(src="assets/scripts/main.js")
   body.page
-    block body
-    if scriptsPosition === false || scriptsPosition === 'bottom'
-      if jQuery
-        script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
-        if js
-          block scripts
-            script(src="assets/scripts/main.js")
+    block page
+      .page__wrap
+        block page__wrap
+      .page__footer
+        block page__footer
+    if jQuery
+      script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+      if js
+        block scripts
+          script(src="assets/scripts/main.js")
