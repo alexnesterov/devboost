@@ -20,8 +20,7 @@ html(lang="ru")
         block page__wrap
       .page__footer
         block page__footer
-    if jQuery
+    if js
       script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
-      if js
-        block scripts
-          script(src="assets/scripts/main.js")
+      block scripts
+        script(src="assets/scripts/main.js")
