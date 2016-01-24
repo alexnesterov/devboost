@@ -76,7 +76,7 @@ gulp.task('build-styles', function() {
       'include css': true,
       use: [nib(),jeet()]
     }))
-    //.pipe(minifyCss())
+    .pipe(minifyCss())
     .pipe(gulp.dest(path.dist.css))
     .pipe(reload({stream: true}));
 });
