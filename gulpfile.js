@@ -46,8 +46,8 @@ var path = {
 }
 
 // Очистка папки дистрибутива dist
-gulp.task('clean', function(callback) {
-  del(path.clean, callback);
+gulp.task('clean', function() {
+  return del(path.clean);
 });
 
 // Копирует все файлы из корня папки app
