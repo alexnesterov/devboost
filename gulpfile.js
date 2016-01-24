@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var minifyCss = require('gulp-minify-css');
+var cssnano = require('gulp-cssnano');
 var jade = require('gulp-jade');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
@@ -76,7 +76,7 @@ gulp.task('build-styles', function() {
       'include css': true,
       use: [nib(),jeet()]
     }))
-    .pipe(minifyCss())
+    .pipe(cssnano())
     .pipe(gulp.dest(path.dist.css))
     .pipe(reload({stream: true}));
 });
