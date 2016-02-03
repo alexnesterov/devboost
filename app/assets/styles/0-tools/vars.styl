@@ -1,6 +1,24 @@
 // Default vars
-
 fontMain = 'roboto', Arial, sans-serif
-textColor = #000
+textColor = #333
+pageMinWidth = 960px
+imagePath = '../images/'
 
-pageMinWidth = 320px
+stickyFooter = true
+footerHeight = 70px
+
+// wrapper
+.wrapper
+$wrapper
+  padding 0 15px
+  margin 0 auto
+  width 960px
+
+// clearfix
+.clearfix
+$clearfix
+  clearfix()
+
+// Sticky footer
+if stickyFooter
+  sticky-footer(footerHeight)
