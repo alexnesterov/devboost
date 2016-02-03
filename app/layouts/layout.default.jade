@@ -17,9 +17,12 @@ html(lang="ru")
   body.page
     block page
       .page__wrap
-        block page__wrap
+        block header
+          include ../includes/header
+        block main
       .page__footer
-        block page__footer
+        block footer
+          include ../includes/footer
     if js
       script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
       block scripts

@@ -1,9 +1,9 @@
 extends layouts/layout.default
 
-append page
+block main
+  img.coding(src="assets/images/source_code.png", alt="")
+  .start Let's Code!
 
-block page__wrap
-  include includes/hello
-
-block page__footer
-  .description Jade and Stylus starter kit.
+block footer
+  .footer
+    .description Jade and Stylus starter kit.
