@@ -76,7 +76,7 @@ gulp.task('build-styles', function() {
       'include css': true,
       use: [nib(),jeet()]
     }))
-    .pipe(cssnano())
+    .pipe(cssnano({autoprefixer: false}))
     .pipe(gulp.dest(path.dist.css))
     .pipe(reload({stream: true}));
 });
