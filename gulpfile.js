@@ -4,6 +4,7 @@ var jade = require('gulp-jade');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
 var jeet = require('jeet');
+var rupture = require('rupture');
 var plumber = require('gulp-plumber');
 var imagemin = require('gulp-imagemin');
 var browserSync = require('browser-sync');
@@ -74,7 +75,7 @@ gulp.task('build-styles', function() {
     .pipe(plumber())
     .pipe(stylus({
       'include css': true,
-      use: [nib(),jeet()]
+      use: [nib(),jeet(),rupture()]
     }))
     .pipe(cssnano({autoprefixer: false}))
     .pipe(gulp.dest(path.dist.css))
