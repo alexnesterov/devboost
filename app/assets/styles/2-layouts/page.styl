@@ -1,9 +1,12 @@
 // Body styles
 .page
+  min-width pageMinWidth
   font-family fontMain
   font-size fontSize
   line-height lineHeight
   color textColor
-  min-width pageMinWidth
   background bgColor
 
+// Sticky footer
+if stickyFooter
+  sticky-footer(footerHeight)

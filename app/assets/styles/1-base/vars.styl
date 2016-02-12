@@ -1,15 +1,16 @@
 // Default vars
+pageMinWidth = 960px
 fontMain = 'roboto', Arial, sans-serif
 fontSize = 15px
 lineHeight = 1.5
 textColor = #333
 bgColor = #fff
 
-pageMinWidth = 960px
-imagePath = '../images/'
-
 stickyFooter = true
 footerHeight = 70px
+
+// Path to images
+imagePath = '../images/'
 
 // Helpers mixins
 wrap()
@@ -17,6 +18,3 @@ wrap()
   margin 0 auto
   width 1170px
 
-// Sticky footer
-if stickyFooter
-  sticky-footer(footerHeight)
