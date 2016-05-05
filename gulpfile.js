@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var cssnano = require('gulp-cssnano');
-var jade = require('gulp-jade');
+var pug = require('gulp-pug');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
 var jeet = require('jeet');
@@ -14,14 +14,14 @@ var reload = browserSync.reload;
 
 var path = {
   app: {
-    html: 'app/*.jade',
+    html: 'app/*.pug',
     css: 'app/assets/styles/*.styl',
     js: 'app/assets/scripts/*.js',
     img: 'app/assets/images/**/*',
     fonts: 'app/assets/fonts/**/*',
     rootfiles: [
       'app/*.*',
-      '!app/*.jade'
+      '!app/*.pug'
     ]
   },
   dist: {
@@ -33,14 +33,14 @@ var path = {
     rootfiles: 'dist'
   },
   watch: {
-    html: 'app/**/*.jade',
+    html: 'app/**/*.pug',
     css: 'app/assets/styles/**/*',
     js: 'app/assets/scripts/**/*',
     img: 'app/assets/images/**/*',
     fonts: 'app/assets/fonts/**/*',
     rootfiles: [
       'app/*',
-      '!app/*.jade'
+      '!app/*.pug'
     ]
   },
   clean: 'dist/*'
@@ -61,7 +61,7 @@ gulp.task('copy-rootfiles', function() {
 gulp.task('build-html', function() {
   return gulp.src(path.app.html)
     .pipe(plumber())
-    .pipe(jade({
+    .pipe(pug({
       pretty: true
     }))
     .pipe(gulp.dest(path.dist.html));
