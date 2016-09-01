@@ -1,21 +1,24 @@
-var gulp = require('gulp');
-var cssnano = require('gulp-cssnano');
-var pug = require('gulp-pug');
-var stylus = require('gulp-stylus');
-var nib = require('nib');
-var jeet = require('jeet');
-var rupture = require('rupture');
-var plumber = require('gulp-plumber');
-var imagemin = require('gulp-imagemin');
-var browserSync = require('browser-sync');
-var del = require('del');
-var runSequence = require('run-sequence');
-var reload = browserSync.reload;
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const bourbon = require('node-bourbon');
+const prefix = require('gulp-autoprefixer');
+const cssnano = require('gulp-cssnano');
+const pug = require('gulp-pug');
+const plumber = require('gulp-plumber');
+const imagemin = require('gulp-imagemin');
+const cache = require('gulp-cache');
+const browserSync = require('browser-sync');
+const del = require('del');
+const runSequence = require('run-sequence');
+const reload = browserSync.reload;
+const zip = require('gulp-zip');
 
+
+// Пути проекта
 var path = {
   app: {
     html: 'app/*.pug',
-    css: 'app/assets/styles/*.styl',
+    css: 'app/assets/styles/*.sass',
     js: 'app/assets/scripts/*.js',
     img: 'app/assets/images/**/*',
     fonts: 'app/assets/fonts/**/*',
@@ -46,9 +49,21 @@ var path = {
   clean: 'dist/*'
 }
 
+// Создает архив собранного проекта
+gulp.task('zip', function () {
+  return gulp.src('dist/**/*')
+    .pipe(zip('archive.zip'))
+    .pipe(gulp.dest('./'))
+});
+
 // Очистка папки дистрибутива dist
-gulp.task('clean', function() {
+gulp.task('clean', ['clear'], function() {
   return del(path.clean);
+});
+
+// Очистка кэша
+gulp.task('clear', function (done) {
+  return cache.clearAll(done);
 });
 
 // Копирует все файлы из корня папки app
@@ -57,7 +72,7 @@ gulp.task('copy-rootfiles', function() {
     .pipe(gulp.dest(path.dist.rootfiles));
 });
 
-// Компилирует jade шаблоны
+// Компилирует pug файлы
 gulp.task('build-html', function() {
   return gulp.src(path.app.html)
     .pipe(plumber())
@@ -69,15 +84,18 @@ gulp.task('build-html', function() {
 
 gulp.task('jade-watch', ['build-html'], reload);
 
-// Компилирует stylus файлы
+// Компилирует sass файлы
 gulp.task('build-styles', function() {
   return gulp.src(path.app.css)
     .pipe(plumber())
-    .pipe(stylus({
-      'include css': true,
-      use: [nib(),jeet(),rupture()]
+    .pipe(sass({
+      outputStyle: 'expanded',
+      includePaths: bourbon.includePaths
     }))
-    .pipe(cssnano({autoprefixer: false}))
+    .pipe(prefix({
+      browsers: ['last 15 versions']
+    }))
+    .pipe(cssnano())
     .pipe(gulp.dest(path.dist.css))
     .pipe(reload({stream: true}));
 });
@@ -94,7 +112,7 @@ gulp.task('scripts-watch', ['build-scripts'], reload);
 gulp.task('build-images', function() {
   return gulp.src(path.app.img)
     .pipe(plumber())
-    .pipe(imagemin())
+    .pipe(cache(imagemin()))
     .pipe(gulp.dest(path.dist.img));
 });
 
@@ -115,8 +133,8 @@ gulp.task('build', ['clean'], function(callback) {
     callback);
 });
 
-// Запускает сервер Browsersync
-gulp.task('server', ['build'], function() {
+// Запускает сервер Browsersync и слежку за файлами
+gulp.task('serve', ['build'], function() {
 
   browserSync.init({
     server: {
@@ -136,4 +154,4 @@ gulp.task('server', ['build'], function() {
 
 // Задача по-умолчанию
 // Запускает окружение для разработки
-gulp.task('default', ['server']);
+gulp.task('default', ['serve']);
