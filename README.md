@@ -1,5 +1,5 @@
 # devBoost
-Jade and Stylus starter kit.
+Jade and Sass starter kit.
 
 ## System Preparation
 
