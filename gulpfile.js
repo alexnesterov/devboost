@@ -140,6 +140,7 @@ gulp.task('serve', ['build'], function() {
     server: {
       baseDir: 'dist',
     },
+    port: 1508,
     notify: false
   });
 
