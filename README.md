@@ -1,5 +1,5 @@
 # devBoost
-Jade and Sass starter kit.
+Pug and Sass starter kit.
 
 ## System Preparation
 
