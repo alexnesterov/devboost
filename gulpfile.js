@@ -58,7 +58,9 @@ gulp.task('build-styles', function() {
     .pipe(prefix({
       browsers: ['last 15 versions']
     }))
-    .pipe(cssnano())
+    .pipe(cssnano({
+      autoprefixer: false
+    }))
     .pipe(gulp.dest(p.dist + '/assets/styles/'))
     .pipe(reload({stream: true}));
 });
