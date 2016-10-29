@@ -31,4 +31,4 @@ node_modules
 build
 public
 dist
-archive.zip
+*.zip
