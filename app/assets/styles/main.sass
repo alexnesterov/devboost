@@ -1,13 +1,23 @@
-// Tools
 @import bourbon
-@import 0-tools/mixins
 
-// Base
-@import 1-base/vars
-@import 1-base/normalize
-@import 1-base/font-awesome/font-awesome
-@import 1-base/fonts
-@import 1-base/base
+@import helpers/functions
+@import helpers/variables
+@import helpers/mixins
+@import helpers/placeholders
+
+@import helpers/placeholders
+
+@import base/font-awesome/font-awesome
+@import base/fonts
+@import base/normalize
+@import base/base
+
+@import layout/header
+@import layout/footer
+
+@import components/buttons
+
+@import pages/home
 
 
 // Delete this greeting styles
@@ -21,9 +31,6 @@
 .page__footer
   text-align: center
   line-height: $footer-height
-
-.footer
-  border-top: 1px solid #ccc
 // End greeting styles -------------
 
 
