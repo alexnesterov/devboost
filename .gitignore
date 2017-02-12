@@ -32,3 +32,6 @@ build
 public
 dist
 *.zip
+
+# gulp-gh-pages cache dir
+.publish

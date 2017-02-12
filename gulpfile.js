@@ -13,6 +13,7 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var reload = browserSync.reload;
 var zip = require('gulp-zip');
+var ghPages = require('gulp-gh-pages');
 
 // Пути проекта
 var p = {
@@ -146,6 +147,12 @@ gulp.task('zip', function () {
   return gulp.src(p.dist + '/**/*')
     .pipe(zip(p.name + '.pack.zip'))
     .pipe(gulp.dest('./'))
+});
+
+// Деплой на gh-pages
+gulp.task('deploy', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
 });
 
 // Задача по-умолчанию
