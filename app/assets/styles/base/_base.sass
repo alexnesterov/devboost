@@ -14,7 +14,8 @@ html
 
 ::selection
   color: $background-color
-  background: $brand-color
+  // Fix Chrome selection
+  background: rgba($brand-color, 0.99)
 
 ::-moz-selection
   color: $background-color
@@ -27,6 +28,7 @@ html
   line-height: $base-line-height
   color: $text-color
   background: $background-color
+  background: #000
 
 .container
   width: $content-width
