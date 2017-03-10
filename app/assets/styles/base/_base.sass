@@ -2,7 +2,7 @@ html
   box-sizing: border-box
   position: relative
   min-height: 100%
-  min-width: $content-width
+  min-width: $container-min
 
 *,
 *:before,
@@ -13,13 +13,13 @@ html
   outline: none
 
 ::selection
-  color: $background-color
+  color: #fff
   // Fix Chrome selection
-  background: rgba($brand-color, 0.99)
+  background: rgba($brand-prime, 0.99)
 
 ::-moz-selection
-  color: $background-color
-  background: $brand-color
+  color: #fff
+  background: $brand-prime
 
 .page
   font-family: $base-font-family
@@ -27,9 +27,12 @@ html
   font-weight: $base-font-weight
   line-height: $base-line-height
   color: $text-color
-  background: $background-color
+  background: $bg-color
 
 .container
-  width: $content-width
-  margin: 0 auto
-  padding: 0 10px
+  max-width: $container
+  margin-right: auto
+  margin-left: auto
+  padding-left: floor(($grid-gutter / 2))
+  padding-right: ceil(($grid-gutter / 2))
+  +clearfix

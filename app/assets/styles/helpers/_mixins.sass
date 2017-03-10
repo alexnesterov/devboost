@@ -12,3 +12,13 @@
 
   &:-moz-placeholder
     color: $color
+
+// Grid row - wrapper for columns
+=grid($gutter: $grid-gutter)
+  margin-left: ceil(($gutter / -2))
+  margin-right: floor(($gutter / -2))
+  +clearfix
+
+=grid-col($gutter: $grid-gutter)
+  padding-left: floor(($gutter / 2))
+  padding-right: ceil(($gutter / 2))
