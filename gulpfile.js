@@ -24,7 +24,7 @@ var p = {
 
 // Компилирует pug файлы
 gulp.task('build-html', function() {
-  return gulp.src(p.app + '/*.pug')
+  return gulp.src([p.app + '/*.pug', '!' + p.app + '/config.pug'])
     .pipe(plumber({
       errorHandler: notify.onError(function(err) {
         return {

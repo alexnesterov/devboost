@@ -1,5 +1,4 @@
-include config
-include mixins
+include ../config
 
 doctype html
 html(lang="ru")
@@ -16,7 +15,7 @@ html(lang="ru")
     block styles
       link(rel="stylesheet", href="./assets/styles/main.css")
   body.page
-    block page
+    block content
     if js
       script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
       block scripts
