@@ -28,9 +28,9 @@ Temporary Items
 app/components
 bower_components
 node_modules
-build
-public
-dist
+/build/
+/public/
+/dist/
 *.zip
 
 # gulp-gh-pages cache dir
