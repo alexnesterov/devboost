@@ -15,35 +15,8 @@ var reload = browserSync.reload;
 var zip = require('gulp-zip');
 var ghPages = require('gulp-gh-pages');
 
-// Пути проекта
-var p = {
-  name: 'devboost',   // Имя проекта
-  app: 'app',         // Исходники проекта
-  dist: 'dist'        // Собранный проект
-};
-
-// Компилирует pug файлы
-gulp.task('build-html', function() {
-  return gulp.src([p.app + '/*.pug', '!' + p.app + '/config.pug'])
-    .pipe(plumber({
-      errorHandler: notify.onError(function(err) {
-        return {
-          title: 'Html',
-          message: err.message
-        }
-      })
-    }))
-    .pipe(pug({
-      pretty: true
-    }))
-    .pipe(gulp.dest(p.dist));
-});
-
-gulp.task('jade-watch', ['build-html'], reload);
-
-// Компилирует sass файлы
-gulp.task('build-styles', function() {
-  return gulp.src(p.app + '/assets/styles/*.sass')
+gulp.task('styles', function() {
+  return gulp.src('app/assets/styles/*.sass')
     .pipe(plumber({
       errorHandler: notify.onError(function(err) {
         return {
@@ -62,99 +35,85 @@ gulp.task('build-styles', function() {
     .pipe(cssnano({
       autoprefixer: false
     }))
-    .pipe(gulp.dest(p.dist + '/assets/styles/'))
+    .pipe(gulp.dest('dist/assets/styles/'))
     .pipe(reload({stream: true}));
 });
 
-// Копирует скрипты
-gulp.task('build-scripts', function() {
-  return gulp.src(p.app + '/assets/scripts/*.js')
-    .pipe(gulp.dest(p.dist + '/assets/scripts/'));
+gulp.task('scripts', function() {
+  return gulp.src('app/assets/scripts/*.js')
+    .pipe(gulp.dest('dist/assets/scripts/'))
+    .pipe(reload({stream: true}));
 });
 
-gulp.task('scripts-watch', ['build-scripts'], reload);
-
-// Сжимает и копирует изображения
-gulp.task('build-images', function() {
-  return gulp.src(p.app + '/assets/images/**/*')
-    .pipe(plumber({
-      errorHandler: notify.onError(function(err) {
-        return {
-          title: 'Images',
-          message: err.message
-        }
-      })
+gulp.task('html', function() {
+  return gulp.src(['app/*.pug', '!app/config.pug'])
+    .pipe(pug({
+      pretty: true
     }))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('images', function() {
+  return gulp.src('app/assets/images/**/*')
     .pipe(cache(imagemin()))
-    .pipe(gulp.dest(p.dist + '/assets/images/'));
+    .pipe(gulp.dest('dist/assets/images/'));
 });
 
-// Копирует шрифты
-gulp.task('build-fonts', function() {
-  return gulp.src(p.app + '/assets/fonts/**/*')
-    .pipe(gulp.dest(p.dist + '/assets/fonts/'));
+gulp.task('fonts', function() {
+  return gulp.src('app/assets/fonts/**/*')
+    .pipe(gulp.dest('dist/assets/fonts/'));
 });
 
-// Копирует все файлы из корня папки app, кроме файлов с расширением pug
-gulp.task('copy-rootfiles', function() {
-  return gulp.src([p.app + '/*.*', '!' + p.app + '/*.pug'])
-    .pipe(gulp.dest(p.dist));
+gulp.task('rootfiles', function() {
+  return gulp.src(['app/*.*', '!app/*.pug'])
+    .pipe(gulp.dest('dist'));
 });
 
-// Очистка кэша
 gulp.task('clear', function (done) {
   return cache.clearAll(done);
 });
 
-// Очистка папки дистрибутива dist
 gulp.task('clean', ['clear'], function() {
-  return del(p.dist);
+  return del('dist');
 });
 
-// Собирает проект
 gulp.task('build', ['clean'], function(callback) {
   runSequence(
-    'build-fonts',
-    'build-images',
-    'build-styles',
-    'build-scripts',
-    ['build-html', 'copy-rootfiles'],
+    ['styles', 'scripts'],
+    'html',
+    'images',
+    'fonts',
+    'rootfiles',
     callback);
 });
 
-// Запускает сервер Browsersync и слежку за файлами
 gulp.task('serve', ['build'], function() {
-
   browserSync.init({
     server: {
-      baseDir: p.dist,
+      baseDir: 'dist',
     },
     port: 1508,
     notify: false
   });
 
-  gulp.watch(p.app + '/**/*.pug', ['jade-watch']);
-  gulp.watch([p.app + '/*.*', '!' + p.app + '/*.pug'], ['copy-rootfiles']);
-  gulp.watch(p.app + '/assets/styles/**/*', ['build-styles']);
-  gulp.watch(p.app + '/assets/scripts/**/*', ['scripts-watch']);
-  gulp.watch(p.app + '/assets/images/**/*', ['build-images']);
-  gulp.watch(p.app + '/assets/fonts/**/*', ['build-fonts']);
-
+  gulp.watch('dist/*.html').on('change', reload);
+  gulp.watch('app/**/*.pug', ['html']);
+  gulp.watch(['app/*.*', '!app/*.pug'], ['rootfiles']);
+  gulp.watch('app/assets/styles/**/*', ['styles']);
+  gulp.watch('app/assets/scripts/**/*', ['scripts']);
+  gulp.watch('app/assets/images/**/*', ['images']);
+  gulp.watch('app/assets/fonts/**/*', ['fonts']);
 });
 
-// Создает архив собранного проекта
 gulp.task('zip', function () {
-  return gulp.src(p.dist + '/**/*')
-    .pipe(zip(p.name + '.pack.zip'))
+  return gulp.src('dist/**/*')
+    .pipe(zip('devboost.pack.zip'))
     .pipe(gulp.dest('./'))
 });
 
-// Деплой на gh-pages
 gulp.task('deploy', function() {
   return gulp.src('./dist/**/*')
     .pipe(ghPages());
 });
 
-// Задача по-умолчанию
-// Запускает окружение для разработки
 gulp.task('default', ['serve']);
