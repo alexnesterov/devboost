@@ -25,6 +25,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+.idea/
+
 app/components
 bower_components
 node_modules
