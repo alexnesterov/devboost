@@ -1,33 +1,26 @@
 include ../config
 
 doctype html
-<!--[if IE 9]>
-<html lang="ru" class="lt-ie10">
-<![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="ru">
-<!--<![endif]-->
-head
-  meta(charset="UTF-8")
-  meta(http-equiv="X-UA-Compatible", content="IE=edge")
-  meta(name="viewport", content="width=device-width, initial-scale=1")
-  title #{title}
-  meta(name="description", content=description)
-  meta(name="keywords", content=keywords)
-  link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Open+Sans")
-  block styles
-    link(rel="stylesheet", href="./assets/styles/main.css")
-body
-  .layout
-    include ../includes/header
-    .layout__content
-      block content
-        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi culpa ex saepe hic facilis sit, rem tempora veritatis eum maiores, dolore explicabo ipsum consequatur, veniam, autem earum molestiae exercitationem obcaecati.
-          
-    include ../includes/footer
+html
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title #{title}
+    meta(name="description", content=description)
+    meta(name="keywords", content=keywords)
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Open+Sans")
+    block styles
+      link(rel="stylesheet", href="./assets/styles/main.css")
 
-  block scripts
-    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
-    script(src="./assets/scripts/main.js")
+  body
+    .layout
+      include ../includes/header
+      .layout__content
+        block content
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi culpa ex saepe hic facilis sit, rem tempora veritatis eum maiores, dolore explicabo ipsum consequatur, veniam, autem earum molestiae exercitationem obcaecati.
+      include ../includes/footer
 
-</html>
+    block scripts
+      script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+      script(src="./assets/scripts/main.js")
