@@ -1,28 +1,44 @@
+// 
+// Reset the box-sizing, position and others
+html
+  box-sizing: border-box
+
 *,
 *:before,
 *:after
   position: relative
-  box-sizing: inherit
-
-*:focus
-  outline: none
+  box-sizing: inherit 
 
 ::selection
   color: #fff
   // Fix Chrome selection
-  background: rgba($brand-prime, 0.99)
+  background: rgba($color_primary, 0.99)
 
 ::-moz-selection
   color: #fff
-  background: $brand-prime
+  background: $color_primary
 
-html
-  box-sizing: border-box
+*:focus
+  outline: none
 
+
+// 
+// Body
 body
-  font-family: $base-font-family
-  font-size: $base-font-size
-  font-weight: $base-font-weight
-  line-height: $base-line-height
-  color: $text-color
-  background: $bg-color
+  font-family: $page_font-family
+  font-size: $page_font-size
+  font-weight: $page_font-weight
+  line-height: $page_line-height
+  color: $page_color
+  background-color: $page_background
+
+
+// 
+// Links
+a
+  color: $link_color
+  text-decoration: none
+
+  &:hover
+    color: $link_hover-color
+    text-decoration: none
