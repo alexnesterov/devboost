@@ -7,7 +7,6 @@ To use this starter project, you'll need the following things installed on your 
 
 1. [Git](https://git-scm.com/downloads)
 2. [NodeJS](http://nodejs.org)
-3. [GulpJS](https://github.com/gulpjs/gulp)
 
 ## Local Installation
 
