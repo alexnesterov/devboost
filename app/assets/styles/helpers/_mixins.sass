@@ -1,4 +1,4 @@
-// 
+//
 // Clearfix
 =clearfix()
   &::after
@@ -6,7 +6,7 @@
     display: table
     clear: both
 
-// 
+//
 // Color placeholders
 =placeholder($color: #000)
 
@@ -22,11 +22,30 @@
   &:-moz-placeholder
     color: $color
 
-// 
-// Inner container
+//
+// Media
+=media($name)
+  @if $name == xlarge
+    @media (min-width: $breakpoint_large)
+      @content
+  @if $name == large
+    @media (max-width: $breakpoint_large)
+      @content
+  @if $name == medium
+    @media (max-width: $breakpoint_medium)
+      @content
+  @if $name == small
+    @media (max-width: $breakpoint_small)
+      @content
+  @if $name == xsmall
+    @media (max-width: $breakpoint_xsmall)
+      @content
+
+//
+// Container placeholder
 %container
-  max-width: 970px
+  max-width: $grid_container
   margin-left: auto
   margin-right: auto
-  padding-left: 15px
-  padding-right: 15px
+  padding-left: $grid_gutter/2
+  padding-right: $grid_gutter/2
