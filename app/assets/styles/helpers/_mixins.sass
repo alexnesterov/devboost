@@ -25,20 +25,20 @@
 //
 // Media
 =media($name)
-  @if $name == xlarge
-    @media (min-width: $breakpoint_large)
-      @content
-  @if $name == large
-    @media (max-width: $breakpoint_large)
-      @content
-  @if $name == medium
-    @media (max-width: $breakpoint_medium)
+  @if $name == xsmall
+    @media (max-width: $breakpoint_xsmall)
       @content
   @if $name == small
     @media (max-width: $breakpoint_small)
       @content
-  @if $name == xsmall
-    @media (max-width: $breakpoint_xsmall)
+  @if $name == medium
+    @media (max-width: $breakpoint_medium)
+      @content
+  @if $name == large
+    @media (max-width: $breakpoint_large)
+      @content
+  @if $name == xlarge
+    @media (min-width: $breakpoint_large)
       @content
 
 //
