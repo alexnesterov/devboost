@@ -25,20 +25,20 @@
 //
 // Media
 =media($name)
-  @if $name == xsmall
-    @media (max-width: $breakpoint_xsmall)
+  @if $name == phone
+    @media (max-width: $breakpoint_phone)
       @content
-  @if $name == small
-    @media (max-width: $breakpoint_small)
+  @if $name == mobile
+    @media (max-width: $breakpoint_mobile)
       @content
-  @if $name == medium
-    @media (max-width: $breakpoint_medium)
+  @if $name == tablet
+    @media (max-width: $breakpoint_tablet)
       @content
-  @if $name == large
-    @media (max-width: $breakpoint_large)
+  @if $name == desktop
+    @media (max-width: $breakpoint_desktop)
       @content
-  @if $name == xlarge
-    @media (min-width: $breakpoint_large)
+  @if $name == wide
+    @media (min-width: $breakpoint_wide)
       @content
 
 //
