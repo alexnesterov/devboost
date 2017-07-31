@@ -1,0 +1,171 @@
+//
+// Base
+.button
+  display: inline-block
+  padding: 8px 16px
+  font-size: $font_size
+  font-weight: 400
+  line-height: 1.25
+  text-align: center
+  white-space: nowrap
+  vertical-align: middle
+  user-select: none
+  border: 1px solid transparent
+  color: $color_white
+  background-color: $color_primary
+  border-color: $color_primary
+  transition: all .25s ease-out
+  &:hover
+    color: $color_white
+    background-color: darken($color_primary, 10%)
+    border-color: darken($color_primary, 10%)
+    text-decoration: none
+  &:focus
+    outline: 0
+  &.button_disabled,
+  &:disabled
+    cursor: not-allowed
+    opacity: .4
+
+//
+// Alternate
+.button_primary
+  background-color: $color_primary
+  border-color: $color_primary
+  &:hover
+    background-color: darken($color_primary, 10%)
+    border-color: darken($color_primary, 10%)
+  &.button_disabled,
+  &:disabled
+    &:hover
+      background-color: $color_primary
+      border-color: $color_primary
+
+.button_secondary
+  background-color: $color_secondary
+  border-color: $color_secondary
+  &:hover
+    background-color: darken($color_secondary, 10%)
+    border-color: darken($color_secondary, 10%)
+  &.button_disabled,
+  &:disabled
+    &:hover
+      background-color: $color_secondary
+      border-color: $color_secondary
+
+.button_info
+  background-color: $color_info
+  border-color: $color_info
+  &:hover
+    background-color: darken($color_info, 10%)
+    border-color: darken($color_info, 10%)
+  &.button_disabled,
+  &:disabled
+    &:hover
+      background-color: $color_info
+      border-color: $color_info
+
+.button_success
+  background-color: $color_success
+  border-color: $color_success
+  &:hover
+    background-color: darken($color_success, 10%)
+    border-color: darken($color_success, 10%)
+  &.button_disabled,
+  &:disabled
+    &:hover
+      background-color: $color_success
+      border-color: $color_success
+
+.button_warning
+  background-color: $color_warning
+  border-color: $color_warning
+  &:hover
+    background-color: darken($color_warning, 10%)
+    border-color: darken($color_warning, 10%)
+  &.button_disabled,
+  &:disabled
+    &:hover
+      background-color: $color_warning
+      border-color: $color_warning
+
+.button_danger
+  background-color: $color_danger
+  border-color: $color_danger
+  &:hover
+    background-color: darken($color_danger, 10%)
+    border-color: darken($color_danger, 10%)
+  &.button_disabled,
+  &:disabled
+    &:hover
+      background-color: $color_danger
+      border-color: $color_danger
+
+//
+// Bordered
+.button_primary.button_bordered
+  color: $color_primary
+  &:hover
+    color: $color_white
+    background-color: $color_primary
+    border-color: $color_primary
+  &.button_disabled,
+  &:disabled
+    color: $color_primary
+
+.button_secondary.button_bordered
+  color: $color_secondary
+  &:hover
+    color: $color_white
+    background-color: $color_secondary
+    border-color: $color_secondary
+  &.button_disabled,
+  &:disabled
+    color: $color_secondary
+
+.button_info.button_bordered
+  color: $color_info
+  &:hover
+    color: $color_white
+    background-color: $color_info
+    border-color: $color_info
+  &.button_disabled,
+  &:disabled
+    color: $color_info
+
+.button_success.button_bordered
+  color: $color_success
+  &:hover
+    color: $color_white
+    background-color: $color_success
+    border-color: $color_success
+  &.button_disabled,
+  &:disabled
+    color: $color_success
+
+.button_warning.button_bordered
+  color: $color_warning
+  &:hover
+    color: $color_white
+    background-color: $color_warning
+    border-color: $color_warning
+    &.button_disabled,
+    &:disabled
+      color: $color_warning
+
+.button_danger.button_bordered
+  color: $color_danger
+  &:hover
+    color: $color_white
+    background-color: $color_danger
+    border-color: $color_danger
+  &.button_disabled,
+  &:disabled
+    color: $color_danger
+
+.button_bordered
+  background-color: transparent
+  &.button_disabled,
+  &:disabled
+    &:hover
+      background-color: transparent
