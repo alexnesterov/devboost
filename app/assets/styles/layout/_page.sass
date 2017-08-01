@@ -5,3 +5,5 @@
   line-height: $page_line-height
   color: $page_color
   background-color: $page_background
+  @if $page_antialiased
+    -webkit-font-smoothing: antialiased
