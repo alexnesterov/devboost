@@ -1,48 +1,49 @@
-//
+// Path image
+$path_image: '../images/'
+
+
 // Colors
-$color_primary:         #272727
-$color_secondary:       #80262d
-$color_info:            #5bc0de
-$color_success:         #5cb85c
-$color_warning:         #f0ad4e
-$color_danger:          #d9534f
+$white:                 #fff
+$black:                 #000
 
-$color_black:           #000
-$color_gray-dark:       #292b2c
-$color_gray-medium:     #464a4c
-$color_gray-light:      #636c72
-$color_white:           #fff
+$gray_dark:             #292b2c
+$gray:                  #464a4c
+$gray_light:            #636c72
+$gray_lighter:          #eceeef
+$gray_lightest:         #f7f7f9
 
-//
-// Fonts
-$font_family:       -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif
-$font_size:         16px
-$font_line-height:  1.6
-$font_weight:       400
+$brand_primary:         #272727
+$brand_secondary:       #80262d
+$brand_info:            #5bc0de
+$brand_success:         #5cb85c
+$brand_warning:         #f0ad4e
+$brand_danger:          #d9534f
 
-//
-// Page
-$page_font-family:  $font_family
-$page_font-size:    $font_size
-$page_line-height:  $font_line-height
-$page_font-weight:  $font_weight
-$page_color:        $color_gray-dark
-$page_background:   $color_white
-$page_antialiased:  false
 
-//
+// Base
+$base_font-family:  -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif
+$base_font-size:    16px
+$base_line-height:  1.6
+$base_font-weight:  400
+$base_color:        $brand_primary
+$base_background:   $white
+$base_antialiased:  false
+
+
 // Links
-$link_color: $color_secondary
-$link_hover-color: $color_primary
+$link_color:              $brand_secondary
+$link_decoration:         none
+$link_hover-color:        darken($link_color, 15%)
+$link_hover-decoration:   underline
 
-//
+
 // Breakpoints
-$breakpoint_phone: 576px
-$breakpoint_mobile: 768px
-$breakpoint_tablet: 992px
-$breakpoint_desktop: 1200px
+$breakpoint_phone:    576px
+$breakpoint_mobile:   768px
+$breakpoint_tablet:   992px
+$breakpoint_desktop:  1200px
 
-//
+
 // Grid
-$grid_container: 960px
-$grid_gutter: 20px
+$grid_container:  960px
+$grid_gutter:     20px

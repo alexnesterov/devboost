@@ -1,4 +1,3 @@
-//
 // Reset the box-sizing, position and others
 html
   box-sizing: border-box
@@ -11,24 +10,23 @@ html
   box-sizing: inherit
 
 ::selection
-  color: #fff
+  color: $white
   // Fix Chrome selection
-  background: rgba($color_primary, 0.99)
+  background: rgba($brand_primary, 0.99)
 
 ::-moz-selection
-  color: #fff
-  background: $color_primary
+  color: $white
+  background: $brand_primary
 
 *:focus
   outline: none
 
 
-//
 // Links
 a
   color: $link_color
-  text-decoration: none
+  text-decoration: $link_decoration
 
   &:hover
     color: $link_hover-color
-    text-decoration: none
+    text-decoration: $link_hover-decoration

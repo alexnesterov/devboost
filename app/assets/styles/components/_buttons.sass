@@ -3,7 +3,7 @@
 .button
   display: inline-block
   padding: 8px 16px
-  font-size: $font_size
+  font-size: $base_font-size
   font-weight: 400
   line-height: 1.25
   text-align: center
@@ -11,14 +11,14 @@
   vertical-align: middle
   user-select: none
   border: 1px solid transparent
-  color: $color_white
-  background-color: $color_primary
-  border-color: $color_primary
+  color: $white
+  background-color: $brand_primary
+  border-color: $brand_primary
   transition: all .25s ease-out
   &:hover
-    color: $color_white
-    background-color: darken($color_primary, 10%)
-    border-color: darken($color_primary, 10%)
+    color: $white
+    background-color: darken($brand_primary, 10%)
+    border-color: darken($brand_primary, 10%)
     text-decoration: none
   &:focus
     outline: 0
@@ -30,138 +30,138 @@
 //
 // Alternate
 .button_primary
-  background-color: $color_primary
-  border-color: $color_primary
+  background-color: $brand_primary
+  border-color: $brand_primary
   &:hover
-    background-color: darken($color_primary, 10%)
-    border-color: darken($color_primary, 10%)
+    background-color: darken($brand_primary, 10%)
+    border-color: darken($brand_primary, 10%)
   &.button_disabled,
   &:disabled
     &:hover
-      background-color: $color_primary
-      border-color: $color_primary
+      background-color: $brand_primary
+      border-color: $brand_primary
 
 .button_secondary
-  background-color: $color_secondary
-  border-color: $color_secondary
+  background-color: $brand_secondary
+  border-color: $brand_secondary
   &:hover
-    background-color: darken($color_secondary, 10%)
-    border-color: darken($color_secondary, 10%)
+    background-color: darken($brand_secondary, 10%)
+    border-color: darken($brand_secondary, 10%)
   &.button_disabled,
   &:disabled
     &:hover
-      background-color: $color_secondary
-      border-color: $color_secondary
+      background-color: $brand_secondary
+      border-color: $brand_secondary
 
 .button_info
-  background-color: $color_info
-  border-color: $color_info
+  background-color: $brand_info
+  border-color: $brand_info
   &:hover
-    background-color: darken($color_info, 10%)
-    border-color: darken($color_info, 10%)
+    background-color: darken($brand_info, 10%)
+    border-color: darken($brand_info, 10%)
   &.button_disabled,
   &:disabled
     &:hover
-      background-color: $color_info
-      border-color: $color_info
+      background-color: $brand_info
+      border-color: $brand_info
 
 .button_success
-  background-color: $color_success
-  border-color: $color_success
+  background-color: $brand_success
+  border-color: $brand_success
   &:hover
-    background-color: darken($color_success, 10%)
-    border-color: darken($color_success, 10%)
+    background-color: darken($brand_success, 10%)
+    border-color: darken($brand_success, 10%)
   &.button_disabled,
   &:disabled
     &:hover
-      background-color: $color_success
-      border-color: $color_success
+      background-color: $brand_success
+      border-color: $brand_success
 
 .button_warning
-  background-color: $color_warning
-  border-color: $color_warning
+  background-color: $brand_warning
+  border-color: $brand_warning
   &:hover
-    background-color: darken($color_warning, 10%)
-    border-color: darken($color_warning, 10%)
+    background-color: darken($brand_warning, 10%)
+    border-color: darken($brand_warning, 10%)
   &.button_disabled,
   &:disabled
     &:hover
-      background-color: $color_warning
-      border-color: $color_warning
+      background-color: $brand_warning
+      border-color: $brand_warning
 
 .button_danger
-  background-color: $color_danger
-  border-color: $color_danger
+  background-color: $brand_danger
+  border-color: $brand_danger
   &:hover
-    background-color: darken($color_danger, 10%)
-    border-color: darken($color_danger, 10%)
+    background-color: darken($brand_danger, 10%)
+    border-color: darken($brand_danger, 10%)
   &.button_disabled,
   &:disabled
     &:hover
-      background-color: $color_danger
-      border-color: $color_danger
+      background-color: $brand_danger
+      border-color: $brand_danger
 
 //
 // Bordered
 .button_primary.button_bordered
-  color: $color_primary
+  color: $brand_primary
   &:hover
-    color: $color_white
-    background-color: $color_primary
-    border-color: $color_primary
+    color: $white
+    background-color: $brand_primary
+    border-color: $brand_primary
   &.button_disabled,
   &:disabled
-    color: $color_primary
+    color: $brand_primary
 
 .button_secondary.button_bordered
-  color: $color_secondary
+  color: $brand_secondary
   &:hover
-    color: $color_white
-    background-color: $color_secondary
-    border-color: $color_secondary
+    color: $white
+    background-color: $brand_secondary
+    border-color: $brand_secondary
   &.button_disabled,
   &:disabled
-    color: $color_secondary
+    color: $brand_secondary
 
 .button_info.button_bordered
-  color: $color_info
+  color: $brand_info
   &:hover
-    color: $color_white
-    background-color: $color_info
-    border-color: $color_info
+    color: $white
+    background-color: $brand_info
+    border-color: $brand_info
   &.button_disabled,
   &:disabled
-    color: $color_info
+    color: $brand_info
 
 .button_success.button_bordered
-  color: $color_success
+  color: $brand_success
   &:hover
-    color: $color_white
-    background-color: $color_success
-    border-color: $color_success
+    color: $white
+    background-color: $brand_success
+    border-color: $brand_success
   &.button_disabled,
   &:disabled
-    color: $color_success
+    color: $brand_success
 
 .button_warning.button_bordered
-  color: $color_warning
+  color: $brand_warning
   &:hover
-    color: $color_white
-    background-color: $color_warning
-    border-color: $color_warning
+    color: $white
+    background-color: $brand_warning
+    border-color: $brand_warning
     &.button_disabled,
     &:disabled
-      color: $color_warning
+      color: $brand_warning
 
 .button_danger.button_bordered
-  color: $color_danger
+  color: $brand_danger
   &:hover
-    color: $color_white
-    background-color: $color_danger
-    border-color: $color_danger
+    color: $white
+    background-color: $brand_danger
+    border-color: $brand_danger
   &.button_disabled,
   &:disabled
-    color: $color_danger
+    color: $brand_danger
 
 .button_bordered
   background-color: transparent
