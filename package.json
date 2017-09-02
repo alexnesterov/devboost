@@ -26,7 +26,6 @@
     "gulp-sass": "^3.1.0",
     "gulp-zip": "^4.0.0",
     "node-bourbon": "^4.2.8",
-    "run-sequence": "^2.1.0",
-    "susy": "^3.0.0"
+    "run-sequence": "^2.1.0"
   }
 }
