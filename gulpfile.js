@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var bourbon = require('node-bourbon');
 var prefix = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
 var pug = require('gulp-pug');
@@ -26,8 +25,7 @@ gulp.task('styles', function() {
       })
     }))
     .pipe(sass({
-      outputStyle: 'expanded',
-      includePaths: [bourbon.includePaths]
+      outputStyle: 'expanded'
     }))
     .pipe(prefix({
       browsers: ['last 15 versions']
