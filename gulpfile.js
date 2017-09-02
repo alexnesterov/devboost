@@ -27,7 +27,7 @@ gulp.task('styles', function() {
     }))
     .pipe(sass({
       outputStyle: 'expanded',
-      includePaths: [bourbon.includePaths, 'node_modules/susy/sass']
+      includePaths: [bourbon.includePaths]
     }))
     .pipe(prefix({
       browsers: ['last 15 versions']
