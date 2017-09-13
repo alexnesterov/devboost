@@ -15,7 +15,7 @@ var zip = require('gulp-zip');
 var ghPages = require('gulp-gh-pages');
 
 gulp.task('styles', function() {
-  return gulp.src('app/assets/styles/*.sass')
+  return gulp.src('app/assets/styles/*.scss')
     .pipe(plumber({
       errorHandler: notify.onError(function(err) {
         return {

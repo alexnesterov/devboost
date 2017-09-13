@@ -1,0 +1,11 @@
+.page {
+  font-family: $base_font-family;
+  font-size: $base_font-size;
+  font-weight: $base_font-weight;
+  line-height: $base_line-height;
+  color: $base_color;
+  background: $base_background;
+  @if ($base_antialiased) {
+    -webkit-font-smoothing: antialiased;
+  }
+}
