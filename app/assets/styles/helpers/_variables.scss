@@ -10,27 +10,30 @@ $gray:                  #464a4c;
 $brand_primary:         #2b303b;
 $brand_secondary:       #767676;
 $brand_accent:          #cc4b37;
-$brand_info:            #5bc0de;
-$brand_success:         #5cb85c;
-$brand_warning:         #ffae00;
-$brand_danger:          #cc4b37;
+
+// Uncomment, if needed
+// $brand_info:            #5bc0de;
+// $brand_success:         #5cb85c;
+// $brand_warning:         #ffae00;
+// $brand_danger:          #cc4b37;
 
 
-// Base
-$base_font-family:  -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-$base_font-size:    16px;
-$base_line-height:  1.6;
-$base_font-weight:  400;
-$base_color:        $brand_primary;
-$base_background:   $white;
-$base_antialiased:  false;
+// Page
+$page_background:         $white;
+$page_color:              $black;
+$page_font_primary:       -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+$page_font_secondary:     -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+$page_font-size:          16px;
+$page_line-height:        1.6;
+$page_font-weight:        400;
+$page_font-antialiased:   false;
 
 
 // Links
-$link_color:              $brand_secondary;
+$link_color:              #1976d2;
 $link_decoration:         none;
-$link_hover-color:        darken($link_color, 15%);
-$link_hover-decoration:   underline;
+$link_hover-color:        #d32f2f;
+$link_hover-decoration:   none;
 
 
 // Breakpoints
