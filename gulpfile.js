@@ -21,7 +21,7 @@ gulp.task('styles', function() {
         return {
           title: 'Styles',
           message: err.message
-        }
+        };
       })
     }))
     .pipe(sass({
@@ -67,7 +67,7 @@ gulp.task('rootfiles', function() {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('clear', function (done) {
+gulp.task('clear', function(done) {
   return cache.clearAll(done);
 });
 
@@ -103,10 +103,10 @@ gulp.task('serve', ['build'], function() {
   gulp.watch('app/assets/fonts/**/*', ['fonts']);
 });
 
-gulp.task('zip', function () {
+gulp.task('zip', function() {
   return gulp.src('dist/**/*')
     .pipe(zip('devboost.pack.zip'))
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('deploy', function() {
