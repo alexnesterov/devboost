@@ -109,7 +109,7 @@ gulp.task('zip', function() {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('deploy', function() {
+gulp.task('gh-pages', ['build'], function() {
   return gulp.src('./dist/**/*')
     .pipe(ghPages());
 });
