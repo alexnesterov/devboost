@@ -1,5 +1,5 @@
-extends layouts/default
+extends _layouts/default
 
 block content
   .hello
-    .hello__inner devBoost #[span.hello__desc - Pug & Sass starter kit.]
+    .hello__inner #{PROJECT.name} #[span.hello__desc - #{PROJECT.desc}]
