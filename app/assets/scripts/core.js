@@ -1,4 +1,3 @@
-$(function () {
-
+$(function() {
   console.log('Ready!');
 });

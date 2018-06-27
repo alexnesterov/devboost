@@ -1,7 +1,6 @@
 // Path image
 $path_image: '../images/';
 
-
 // Colors
 $white:                 #fff;
 $black:                 #000;
@@ -17,24 +16,25 @@ $brand_accent:          #cc4b37;
 // $brand_warning:         #ffae00;
 // $brand_danger:          #cc4b37;
 
+// Fonts
+$font_primary: 'Roboto', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+$font_secondary: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
 
 // Page
 $page_background:         $white;
 $page_color:              $black;
-$page_font_primary:       -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-$page_font_secondary:     -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+$page_color:              $brand_primary;
+$page_font:               $font_primary;
 $page_font-size:          16px;
 $page_line-height:        1.6;
 $page_font-weight:        400;
 $page_font-antialiased:   false;
-
 
 // Links
 $link_color:              #1976d2;
 $link_decoration:         none;
 $link_hover-color:        #d32f2f;
 $link_hover-decoration:   none;
-
 
 // Breakpoints
 $breakpoint_phone:    576px;
@@ -44,5 +44,5 @@ $breakpoint_desktop:  1200px;
 
 
 // Grid
-$grid_container:  960px;
-$grid_gutter:     20px;
+$grid_container:  970px;
+$grid_gutter:     30px;
