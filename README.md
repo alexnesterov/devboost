@@ -1,5 +1,5 @@
 # devBoost
-Pug and Sass starter kit.
+Handlebars and Sass starter kit.
 
 ## System Preparation
 

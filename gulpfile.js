@@ -1,10 +1,9 @@
 var gulp = require('gulp');
+var panini = require('panini');
 var sass = require('gulp-sass');
 var prefix = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
 var fs = require('fs');
-var data = require('gulp-data');
-var pug = require('gulp-pug');
 var plumber = require('gulp-plumber');
 var notify = require('gulp-notify');
 var imagemin = require('gulp-imagemin');
@@ -19,12 +18,12 @@ var ghPages = require('gulp-gh-pages');
 var PROJECT_NAME = 'devboost';
 var PATH = {
   app: {
-    html: ['app/*.pug', '!app/config.pug'],
+    html: ['app/*.html'],
     styles: 'app/assets/styles/*.scss',
     scripts: 'app/assets/scripts/*.js',
     images: 'app/assets/images/**/*',
     fonts: 'app/assets/fonts/**/*',
-    rootfiles: ['app/*.*', '!app/*.pug']
+    rootfiles: ['app/*.*', '!app/*.html']
   },
   dist: {
     html: 'dist',
@@ -36,28 +35,33 @@ var PATH = {
   },
   watch: {
     html: 'dist/*.html',
-    pug: 'app/**/*.pug',
+    handlebars: 'app/**/*.html',
     styles: 'app/assets/styles/**/*',
     scripts: 'app/assets/scripts/**/*',
     images: 'app/assets/images/**/*',
     fonts: 'app/assets/fonts/**/*',
-    rootfiles: ['app/*.*', '!app/*.pug']
+    rootfiles: ['app/*.*', '!app/*.html']
   },
   clean: './dist',
   serve: 'dist',
-  zip: 'dist/**/*',
-  data: 'app/_data/data.json'
+  zip: 'dist/**/*'
 };
 
-gulp.task('html', function() {
+gulp.task('html', ['refresh'], function() {
   return gulp.src(PATH.app.html)
-    .pipe(data(function(file) {
-      return JSON.parse(fs.readFileSync(PATH.data));
-    }))
-    .pipe(pug({
-      pretty: true
+    .pipe(panini({
+      root: './app/',
+      layouts: './app/layouts/',
+      partials: './app/components/',
+      helpers: './app/helpers/',
+      data: './app/data/'
     }))
     .pipe(gulp.dest(PATH.dist.html));
+});
+
+gulp.task('refresh', function(done) {
+  panini.refresh();
+  done();
 });
 
 gulp.task('styles', function() {
@@ -133,7 +137,7 @@ gulp.task('serve', ['build'], function() {
   });
 
   gulp.watch(PATH.watch.html).on('change', reload);
-  gulp.watch(PATH.watch.pug, ['html']);
+  gulp.watch(PATH.watch.handlebars, ['html']);
   gulp.watch(PATH.watch.styles, ['styles']);
   gulp.watch(PATH.watch.scripts, ['scripts']);
   gulp.watch(PATH.watch.images, ['images']);

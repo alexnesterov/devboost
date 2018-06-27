@@ -1,7 +1,7 @@
 {
   "name": "devboost",
   "version": "1.0.0",
-  "description": "Pug & Sass starter kit",
+  "description": "Handlebars & Sass starter kit",
   "repository": {
     "type": "git",
     "url": "https://github.com/alexnesterov/devboost.git"
@@ -24,9 +24,9 @@
     "gulp-imagemin": "^3.1.1",
     "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
-    "gulp-pug": "^3.3.0",
     "gulp-sass": "^3.1.0",
     "gulp-zip": "^4.0.0",
+    "panini": "^1.6.2",
     "run-sequence": "^2.1.0"
   }
 }
