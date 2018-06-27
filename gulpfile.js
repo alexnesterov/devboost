@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var panini = require('panini');
+var htmlbeautify = require('gulp-html-beautify');
 var sass = require('gulp-sass');
 var prefix = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
@@ -55,6 +56,12 @@ gulp.task('html', ['refresh'], function() {
       partials: './app/components/',
       helpers: './app/helpers/',
       data: './app/data/'
+    }))
+    .pipe(htmlbeautify({
+      indent_size: 2,
+      max_preserve_newlines: 0,
+      end_with_newline: true,
+      extra_liners: []
     }))
     .pipe(gulp.dest(PATH.dist.html));
 });

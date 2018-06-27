@@ -4,11 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ project.name }}
-    {{#if title }}
-      | {{ title }}
-    {{/if}}
-  </title>
+  <title>{{ project.name }}{{#if title }} | {{ title }}{{/if}}</title>
   {{#if description}}
     <meta name="description" content="{{ description }}">
   {{/if}}
@@ -16,7 +12,7 @@
     <meta name="keywords" content="{{ keywords }}">
   {{/if}}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-  <link rel="stylesheet" href="./assets/styles/core.css">
+  <link rel="stylesheet" href="{{root}}/assets/styles/core.css">
 </head>
 <body class="page">
   <div class="layout">
