@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ project.name }}{{#if title }} | {{ title }}{{/if}}</title>
+  <title>{{#if title }}{{ title }} | {{/if}} {{ project.name }}</title>
   {{#if description}}
     <meta name="description" content="{{ description }}">
   {{/if}}
