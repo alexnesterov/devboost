@@ -1,0 +1,11 @@
+PORT: 1508
+
+COMPATIBILITY:
+  - "last 15 versions"
+  - "> 1%"
+  - "ie >= 9"
+
+PATHS:
+  dist: "dist"
+  entries:
+    - "app/assets/scripts/core.js"
