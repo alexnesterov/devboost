@@ -6,6 +6,6 @@ COMPATIBILITY:
   - "ie >= 9"
 
 PATHS:
-  dist: "dist"
+  dist: "public"
   entries:
-    - "app/assets/scripts/core.js"
+    - "src/assets/scripts/core.js"

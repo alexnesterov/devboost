@@ -45,13 +45,13 @@ gulp.task('build', gulp.series(
 gulp.task('default', gulp.series('build', serve));
 
 export function html() {
-  return gulp.src('app/*.{html,hbs,handlebars}')
+  return gulp.src('src/*.{html,hbs,handlebars}')
     .pipe(panini({
-      root: 'app/',
-      layouts: 'app/layouts/',
-      partials: 'app/components/',
-      helpers: 'app/helpers/',
-      data: 'app/data/'
+      root: 'src/',
+      layouts: 'src/layouts/',
+      partials: 'src/components/',
+      helpers: 'src/helpers/',
+      data: 'src/data/'
     }))
     .pipe(htmlbeautify({
       indent_size: 2,
@@ -68,7 +68,7 @@ export function refresh(done) {
 }
 
 export function styles() {
-  return gulp.src('app/assets/styles/*.scss')
+  return gulp.src('src/assets/styles/*.scss')
     .pipe(plumber({
       errorHandler: notify.onError((err) => {
         return {
@@ -97,18 +97,18 @@ export function scripts() {
 }
 
 export function images() {
-  return gulp.src('app/assets/images/**/*')
+  return gulp.src('src/assets/images/**/*')
     .pipe(cache(imagemin()))
     .pipe(gulp.dest(PATHS.dist + '/assets/images'));
 }
 
 export function fonts() {
-  return gulp.src('app/assets/fonts/**/*')
+  return gulp.src('src/assets/fonts/**/*')
     .pipe(gulp.dest(PATHS.dist + '/assets/fonts'));
 }
 
 export function rootfiles() {
-  return gulp.src(['app/*.*', '!app/*.html'])
+  return gulp.src(['src/*.*', '!src/*.html'])
     .pipe(gulp.dest(PATHS.dist));
 }
 
@@ -121,16 +121,16 @@ export function serve() {
     notify: false
   });
 
-  gulp.watch('app/**/*.html').on('all', gulp.series(html, reload));
+  gulp.watch('src/**/*.html').on('all', gulp.series(html, reload));
   gulp.watch(PATHS.dist + '/*.html').on('all', gulp.series(reload));
-  gulp.watch('app/{layouts,components}/**/*.html').on('all', gulp.series(refresh, html, reload));
-  gulp.watch('app/data/**/*.{js,json,yml').on('all', gulp.series(refresh, html, reload));
-  gulp.watch('app/helpers/**/*.js').on('all', gulp.series(refresh, html, reload));
-  gulp.watch('app/assets/styles/**/*').on('all', styles);
-  gulp.watch('app/assets/scripts/**/*.js').on('all', gulp.series(scripts, reload));
-  gulp.watch('app/assets/images/**/*').on('all', gulp.series(images, reload));
-  gulp.watch('app/assets/fonts/**/*').on('all', gulp.series(fonts, reload));
-  gulp.watch(['app/*.*', '!app/*.html']).on('all', gulp.series(rootfiles, reload));
+  gulp.watch('src/{layouts,components}/**/*.html').on('all', gulp.series(refresh, html, reload));
+  gulp.watch('src/data/**/*.{js,json,yml').on('all', gulp.series(refresh, html, reload));
+  gulp.watch('src/helpers/**/*.js').on('all', gulp.series(refresh, html, reload));
+  gulp.watch('src/assets/styles/**/*').on('all', styles);
+  gulp.watch('src/assets/scripts/**/*.js').on('all', gulp.series(scripts, reload));
+  gulp.watch('src/assets/images/**/*').on('all', gulp.series(images, reload));
+  gulp.watch('src/assets/fonts/**/*').on('all', gulp.series(fonts, reload));
+  gulp.watch(['src/*.*', '!src/*.html']).on('all', gulp.series(rootfiles, reload));
 }
 
 gulp.task('zip', () => {
